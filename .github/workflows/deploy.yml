@@ -40,7 +40,8 @@ jobs:
 
       - name: Run kubectl
         uses: nikosch86/github-action-eks-kubectl@main
+        run: cd ../../k8s
         with:
-          command: ["cd ../../k8s"], ["apply -f db-secret.yaml,fastfoodapi-deployment.yaml,pv.yaml,fastfoodpostgres-pod.yaml,fastfoodapi-svc.yaml,fastfoodpostgres-svc.yaml"]
+          command: "apply -f db-secret.yaml,fastfoodapi-deployment.yaml,pv.yaml,fastfoodpostgres-pod.yaml,fastfoodapi-svc.yaml,fastfoodpostgres-svc.yaml"
         env:
           EKS_CLUSTER: ${{ env.CLUSTER_NAME }}
