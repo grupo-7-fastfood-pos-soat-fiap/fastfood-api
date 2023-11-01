@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4 
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
@@ -42,6 +42,6 @@ jobs:
         uses: nikosch86/github-action-eks-kubectl@main
         with:
           command: "cd ../../k8s"
-          command: "apply -f db-secret.yaml,kubectl apply -f fastfoodapi-deployment.yaml,pv.yaml,fastfoodpostgres-pod.yaml,fastfoodapi-svc.yaml,fastfoodpostgres-svc.yaml"
+          command: "apply -f db-secret.yaml,fastfoodapi-deployment.yaml,pv.yaml,fastfoodpostgres-pod.yaml,fastfoodapi-svc.yaml,fastfoodpostgres-svc.yaml"
         env:
           EKS_CLUSTER: ${{ env.CLUSTER_NAME }}
