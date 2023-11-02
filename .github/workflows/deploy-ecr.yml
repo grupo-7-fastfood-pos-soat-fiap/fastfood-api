@@ -18,13 +18,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Restore, build and teste API
     - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore, build and teste API
       run: |
         dotnet restore
         dotnet build --no-restore
         dotnet test --no-buld --verbosity normal
-
+        
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
