@@ -1,4 +1,4 @@
-name: Deploy API imagem to Amazon ECR
+name: Deploy API image to Amazon ECR
 
 on:
   pull_request:
@@ -27,7 +27,7 @@ jobs:
       run: |
         dotnet restore
         dotnet build --no-restore
-        dotnet test --no-buld --verbosity normal
+        dotnet test --no-build --verbosity normal
         
   deploy:
     name: Deploy API Image to ECR
