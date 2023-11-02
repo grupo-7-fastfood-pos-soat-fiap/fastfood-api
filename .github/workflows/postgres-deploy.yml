@@ -16,7 +16,7 @@ permissions:
 jobs:
   deploy:
     name: Run Docker build, tag and push
-    runs-on: postgres:14.2-alpine
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
