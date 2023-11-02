@@ -31,7 +31,7 @@ jobs:
         dotnet test --no-buld --verbosity normal
         
   deploy:
-    name: Deploy
+    name: Deploy API Image to ECR
     runs-on: ubuntu-latest
 
     steps:
@@ -49,7 +49,7 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
 
-      - name: Push API image to Amazon ECR
+      - name: Run Docker build, tag and push
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
@@ -58,6 +58,25 @@ jobs:
           docker build -t $ECR_REGISTRY/$API_ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$API_ECR_REPOSITORY:$IMAGE_TAG
           echo "image=$ECR_REGISTRY/$API_ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+
+  deploy:
+    name: Run Docker build, tag and push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
+        with:
+          role-to-assume: arn:aws:iam::235145177657:role/testeRole
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
 
       - name: Push Postgres image to Amazon ECR
         id: build-image
