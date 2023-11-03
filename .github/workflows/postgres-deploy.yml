@@ -1,59 +1,59 @@
-# name: Deploy Postgres image to Amazon ECR
+name: Deploy Postgres image to Amazon ECR
 
-# on:
-#   pull_request:
-#     branches:
-#       - main
+on:
+  pull_request:
+    branches:
+      - main
 
-# env:
-#   AWS_REGION: us-east-1
-#   POSTGRES_ECR_REPOSITORY: fastfood-postgres
-#   DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
-#   DATABASE_PORT: ${{secrets.DATABASE_PORT}}
-#   DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
-#   DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-#   DATABASE_NAME: fastapi #changed to fastapi_test
+env:
+  AWS_REGION: us-east-1
+  POSTGRES_ECR_REPOSITORY: fastfood-postgres
+  DATABASE_HOSTNAME: ${{secrets.DATABASE_HOSTNAME}}
+  DATABASE_PORT: ${{secrets.DATABASE_PORT}}
+  DATABASE_USERNAME: ${{secrets.DATABASE_USERNAME}}
+  DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+  DATABASE_NAME: fastapi #changed to fastapi_test
 
-# permissions:
-#       id-token: write
-#       contents: read
+permissions:
+      id-token: write
+      contents: read
 
-# jobs:
-#   deploy:
-#     name: Run Docker build, tag and push
-#     runs-on: ubuntu-latest
+jobs:
+  deploy:
+    name: Run Docker build, tag and push
+    runs-on: ubuntu-latest
 
-#     services:
-#       postgres:
-#         image: postgres:14.2-alpine
-#         env:
-#             POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-#             POSTGRES_DB: fastapi_test
-#             POSTGRES_USER: ${{secrets.DATABASE_USERNAME}}
-#         ports:
-#             - 5432:5432
+    services:
+      postgres:
+        image: postgres:14.2-alpine
+        env:
+            POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+            POSTGRES_DB: fastapi_test
+            POSTGRES_USER: ${{secrets.DATABASE_USERNAME}}
+        ports:
+            - 5432:5432
 
-#     steps:
-#       - name: Checkout
-#         uses: actions/checkout@v4
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-#       - name: Configure AWS credentials
-#         uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
-#         with:
-#           role-to-assume: arn:aws:iam::235145177657:role/testeRole
-#           role-session-name: GitHub_to_AWS_via_FederatedOIDC
-#           aws-region: ${{ env.AWS_REGION }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
+        with:
+          role-to-assume: arn:aws:iam::235145177657:role/testeRole
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
 
-#       - name: Login to Amazon ECR
-#         id: login-ecr
-#         uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
 
-#       - name: Push Postgres image to Amazon ECR
-#         id: build-image
-#         env:
-#           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-#           IMAGE_TAG: ${{ github.sha }} 
-#         run: |
-#           docker build -t $ECR_REGISTRY/$POSTGRES_ECR_REPOSITORY:$IMAGE_TAG Docker
-#           docker push $ECR_REGISTRY/$POSTGRES_ECR_REPOSITORY:$IMAGE_TAG
-#           echo "image=$ECR_REGISTRY/$POSTGRES_ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+      - name: Push Postgres image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }} 
+        run: |
+          docker build -t $ECR_REGISTRY/$POSTGRES_ECR_REPOSITORY:$IMAGE_TAG Docker
+          docker push $ECR_REGISTRY/$POSTGRES_ECR_REPOSITORY:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$POSTGRES_ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
