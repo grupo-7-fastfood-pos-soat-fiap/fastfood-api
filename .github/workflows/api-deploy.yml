@@ -1,7 +1,7 @@
 name: Deploy API image to Amazon ECR
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
