@@ -30,7 +30,6 @@ jobs:
         dotnet test --no-build --verbosity normal
         
   deploy:
-    name: Deploy API Image to ECR
     runs-on: ubuntu-latest
 
     steps:
