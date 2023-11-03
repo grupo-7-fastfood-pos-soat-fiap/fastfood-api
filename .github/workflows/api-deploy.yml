@@ -1,7 +1,7 @@
 name: Deploy API image to Amazon ECR
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
@@ -30,6 +30,7 @@ jobs:
         dotnet test --no-build --verbosity normal
         
   deploy:
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
