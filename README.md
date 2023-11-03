@@ -49,9 +49,7 @@ A imagem a seguir documenta o sistema utilizando a linguagem ubíqua, dos seguin
 - IDE de sua preferência: pode ser executado com o Visual Studio Code (Windows, Linux or MacOS).
 
 
-## Como rodar a aplicação ▶️
-
-### Com Docker Compose (Fase 01)
+## Como rodar a aplicação localmente ▶️
 
 1. Suba os containers (aplicação e banco de dados) utilizando o docker compose
 
@@ -60,37 +58,6 @@ A imagem a seguir documenta o sistema utilizando a linguagem ubíqua, dos seguin
 2. Teste o sistema através do swagger:
 
    http://localhost:8000/swagger/index.html
-
-### Com Kubernets (Fase 02)
-
-1. Instale o K8S e o minikube na sua máquina local.
-    
-    [Minikue Get Started!](https://minikube.sigs.k8s.io/docs/start/)
-
-2. Rode o comando abaixo para criar um cluster do Kubernets:
-
-    `minikube start`
-
-3. Dentro da pasta /k8s rode o comando abaixo para criar uma secret (onde armazenamos as credenciais para acesso ao banco de dados)
-
-    `kubectl apply -f db-secret.yaml`
-   
-4. Dentro da pasta /k8s rode o comando abaixo para criar os pods e services necessários da aplicação dotnet e do postgres:
-
-    `kubectl apply -f fastfoodapi-deployment.yaml,pv.yaml,fastfoodpostgres-pod.yaml,fastfoodapi-svc.yaml,fastfoodpostgres-svc.yaml`
-
-5. Rode o comando abaixo para verificar se os pods e services estão com o status "running"
-
-    `kubectl get pods,svc`
-
-6. Rode o comando abaixo para apontar a porta do service da api para o host local:
-
-    `kubectl port-forward svc/fastfoodapi-svc 4200:8002`
-
-7. Acesse a aplicação pelo seu navegador:
-
-   http://localhost:4200/swagger/index.html
-
 
 ## Tecnologias
 

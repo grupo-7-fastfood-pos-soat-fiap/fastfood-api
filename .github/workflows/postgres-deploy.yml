@@ -27,9 +27,9 @@ jobs:
       postgres:
         image: postgres:14.2-alpine
         env:
-            POSTGRES_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
-            POSTGRES_DB: fastapi_test
-            POSTGRES_USER: ${{secrets.DATABASE_USERNAME}}
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: fastfood
+            POSTGRES_USER: postgres
         ports:
             - 5432:5432
 
