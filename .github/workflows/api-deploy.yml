@@ -8,10 +8,6 @@ on:
 env:
   AWS_REGION: us-east-1
   API_ECR_REPOSITORY: fastfood-api
-  ECS_SERVICE: svc-fastfooodapi
-  ECS_CLUSTER: fastfoodapi
-  ECS_TASK_DEFINITION: .github/task-definition.json
-  CONTAINER_NAME: container-fastfoodapi
 
 permissions:
       id-token: write
@@ -61,19 +57,3 @@ jobs:
           docker build -t $ECR_REGISTRY/$API_ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$API_ECR_REPOSITORY:latest
           echo "image=$ECR_REGISTRY/$API_ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
-
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@c804dfbdd57f713b6c079302a4c01db7017a36fc
-        with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.build-image.outputs.image }}
-
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@df9643053eda01f169e64a0e60233aacca83799a
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
