@@ -45,23 +45,24 @@ namespace FastFoodFIAP.Infra.Data.Repository
             try
             {
 
-                var pedidos = await DbSet.AsNoTracking()                
-                .Where(c => c.Andamentos!
-                .Any(a => a.SituacaoId <= (int)Domain.Models.Enums.SituacaoPedido.Pronto && a.Atual))
-                .ToListAsync();
+                // var pedidos = await DbSet.AsNoTracking()                
+                // .Where(c => c.Andamentos!
+                // .Any(a => a.SituacaoId <= (int)Domain.Models.Enums.SituacaoPedido.Pronto && a.Atual))
+                // .ToListAsync();
 
-                foreach (var pedido in pedidos)
-                    foreach (var andamento in pedido.Andamentos!)
-                        if (!andamento.Atual)
-                            pedido.Andamentos.Remove(andamento);
+                // foreach (var pedido in pedidos)
+                //     foreach (var andamento in pedido.Andamentos!)
+                //         if (!andamento.Atual)
+                //             pedido.Andamentos.Remove(andamento);
 
-                var ordem = pedidos.OrderBy(p => p.Andamentos!
-                .OrderByDescending(c => c.SituacaoId).ThenBy(c => c.DataHoraInicio)
-                .Select(c => c.SituacaoId).FirstOrDefault());
+                // var ordem = pedidos.OrderBy(p => p.Andamentos!
+                // .OrderByDescending(c => c.SituacaoId).ThenBy(c => c.DataHoraInicio)
+                // .Select(c => c.SituacaoId).FirstOrDefault());
 
                 
 
-                return ordem;
+                //return ordem;
+                return new List<Pedido>();
 
             }
             catch (Exception ex)
@@ -72,10 +73,11 @@ namespace FastFoodFIAP.Infra.Data.Repository
 
         public async Task<IEnumerable<Pedido>> GetAllBySituacao(int situacaoId)
         {
-            return await DbSet.AsNoTracking()
-                .Where(c => c.Andamentos!
-                .Any(a => a.SituacaoId == situacaoId && a.Atual))
-                .ToListAsync();          
+            // return await DbSet.AsNoTracking()
+            //     .Where(c => c.Andamentos!
+            //     .Any(a => a.SituacaoId == situacaoId && a.Atual))
+            //     .ToListAsync();  
+            return new List<Pedido>();        
         }
 
         public async Task<Pedido?> GetById(Guid id)
@@ -109,10 +111,11 @@ namespace FastFoodFIAP.Infra.Data.Repository
 
         public bool PagamentoAprovado(Guid id)
         {
-            Andamento? andamento = Db.Andamentos?.Where(x => x.PedidoId.Equals(id) && x.DataHoraFim != null  && x.SituacaoId == (int)Domain.Models.Enums.SituacaoPedido.Recebido)
-                .FirstOrDefault();
+            // Andamento? andamento = Db.Andamentos?.Where(x => x.PedidoId.Equals(id) && x.DataHoraFim != null  && x.SituacaoId == (int)Domain.Models.Enums.SituacaoPedido.Recebido)
+            //     .FirstOrDefault();
 
-            return andamento != null;
+            // return andamento != null;
+            return false;
         }
     }
 }

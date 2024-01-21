@@ -9,8 +9,6 @@ namespace FastFoodFIAP.Domain.Models.PedidoAggregate
         public List<PedidoCombo> Combos { get; private set;} 
         public virtual Cliente? ClienteNavegation { get; set;}
         public virtual Pagamento? PagamentoNavegation { get; private set; }
-        
-        public virtual ICollection<Andamento>? Andamentos { get; private set; }
 
         private Pedido() {
             Combos = new List<PedidoCombo>();            
