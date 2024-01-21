@@ -18,12 +18,10 @@ namespace FastFoodFIAP.Services.Api.Controllers
     public class PedidoController: ApiController
     {
         private readonly IPedidoApp _pedidoApp;
-        private readonly IAndamentoApp _andamentoApp;
 
-        public PedidoController(IPedidoApp pedidoApp, IAndamentoApp andamentoApp)
+        public PedidoController(IPedidoApp pedidoApp)
         {
             _pedidoApp = pedidoApp;
-            _andamentoApp = andamentoApp;
         }
 
         [HttpGet]
@@ -176,36 +174,7 @@ namespace FastFoodFIAP.Services.Api.Controllers
                 return Problem("Há um problema com a sua requisição - " + e.Message);
             }            
         }
-
-        [HttpPost("andamento/")]
-        [SwaggerOperation(
-        Summary = "Criar um novo andamento para o pedido.",
-        Description = "Criar um novo andamento para o pedido."
-        )]
-        [SwaggerResponse(201, "Success", typeof(List<AndamentoViewModel>))]
-        [SwaggerResponse(204, "No Content")]
-        [SwaggerResponse(400, "Bad Request")]
-        [SwaggerResponse(500, "Unexpected error")]
-        public async Task<ActionResult> CriarAndamento([FromBody] AndamentoInputModel andamento)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                    return CustomResponse(ModelState);
-
-                var result = await _andamentoApp.Add(andamento);
-                if (result.Id != null)
-                    return CustomResponse(await _pedidoApp.GetById((Guid)result.Id));
-                else
-                    return CustomCreateResponse(result);
-            }
-            catch (Exception e)
-            {
-                return Problem("Há um problema com a sua requisição - " + e.Message);
-            }
-            
-        }
-
+        
         [HttpGet("situacao/{id}")]
         [SwaggerOperation(
         Summary = "Lista todos os pedidos por situacao.",
