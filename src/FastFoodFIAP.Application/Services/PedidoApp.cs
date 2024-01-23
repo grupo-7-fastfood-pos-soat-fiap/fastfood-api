@@ -4,14 +4,8 @@ using FastFoodFIAP.Application.Interfaces;
 using FastFoodFIAP.Application.ViewModels;
 using FastFoodFIAP.Domain.Commands.PedidoCommands;
 using FastFoodFIAP.Domain.Interfaces;
-using FastFoodFIAP.Domain.Models.PedidoAggregate;
-using FastFoodFIAP.Domain.Models;
-using FluentValidation.Results;
 using GenericPack.Mediator;
 using GenericPack.Messaging;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using System.Drawing;
-using System;
 
 namespace FastFoodFIAP.Application.Services
 {
@@ -71,11 +65,6 @@ namespace FastFoodFIAP.Application.Services
         public void Dispose()
         {
             GC.SuppressFinalize(this);
-        }
-
-        public bool PagamentoAprovado(Guid id)
-        {
-            return _pedidoRepository.PagamentoAprovado(id);
         }
     }
 }

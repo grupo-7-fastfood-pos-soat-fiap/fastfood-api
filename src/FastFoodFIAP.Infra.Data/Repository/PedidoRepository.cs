@@ -108,14 +108,5 @@ namespace FastFoodFIAP.Infra.Data.Repository
         {
             Db.Dispose();
         }
-
-        public bool PagamentoAprovado(Guid id)
-        {
-            // Andamento? andamento = Db.Andamentos?.Where(x => x.PedidoId.Equals(id) && x.DataHoraFim != null  && x.SituacaoId == (int)Domain.Models.Enums.SituacaoPedido.Recebido)
-            //     .FirstOrDefault();
-
-            // return andamento != null;
-            return false;
-        }
     }
 }
