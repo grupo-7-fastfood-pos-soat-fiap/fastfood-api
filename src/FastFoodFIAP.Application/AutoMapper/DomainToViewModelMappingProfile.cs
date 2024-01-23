@@ -1,6 +1,4 @@
-using System.Data;
 using AutoMapper;
-using FastFoodFIAP.Application.InputModels;
 using FastFoodFIAP.Application.ViewModels;
 using FastFoodFIAP.Domain.Models;
 using FastFoodFIAP.Domain.Models.PedidoAggregate;
@@ -24,15 +22,9 @@ namespace FastFoodFIAP.Application.AutoMapper
                 .ForMember(c => c.Categoria,
                     map => map.MapFrom(m => m.CategoriaNavegation));
 
-            CreateMap<Pagamento, PagamentoViewModel>()
-                .ForMember(c => c.Situacao,
-                    map => map.MapFrom(m => m.SituacaoPagamentoNavegation));
-
             CreateMap<Pedido, PedidoViewModel>()
                 .ForMember(c => c.Cliente,
-                    map => map.MapFrom(m => m.ClienteNavegation))
-                .ForMember(c => c.Pagamento,
-                    map => map.MapFrom(m => m.PagamentoNavegation));
+                    map => map.MapFrom(m => m.ClienteNavegation));
 
             CreateMap<PedidoCombo, PedidoComboViewModel>();
             
@@ -45,10 +37,6 @@ namespace FastFoodFIAP.Application.AutoMapper
                     map => map.MapFrom(m => m.OcupacaoNavegation));
             
             CreateMap<Ocupacao, OcupacaoViewModel>();            
-
-            CreateMap<SituacaoPagamento, SituacaoPagamentoViewModel>();
-
-
 
         }
     }
