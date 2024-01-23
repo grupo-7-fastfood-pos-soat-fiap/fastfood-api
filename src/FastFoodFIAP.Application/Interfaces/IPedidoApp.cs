@@ -1,6 +1,5 @@
 ﻿using FastFoodFIAP.Application.InputModels;
 using FastFoodFIAP.Application.ViewModels;
-using FluentValidation.Results;
 using GenericPack.Messaging;
 
 namespace FastFoodFIAP.Application.Interfaces
@@ -14,6 +13,5 @@ namespace FastFoodFIAP.Application.Interfaces
         Task<CommandResult> Add(PedidoInputModel model);
         Task<CommandResult> Update(Guid id, PedidoInputModel model);
         Task<CommandResult> Remove(Guid id);
-        bool PagamentoAprovado(Guid id);
     }
 }

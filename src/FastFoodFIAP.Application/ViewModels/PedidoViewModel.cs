@@ -6,6 +6,5 @@
         public long CodigoAcompanhamento { get; set; }
         public ClienteViewModel? Cliente {get; set;}
         public List<PedidoComboViewModel>? Combos {get; set;}
-        public PagamentoViewModel? Pagamento {get; set;}
     }
 }

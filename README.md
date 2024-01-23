@@ -24,8 +24,6 @@ No projeto atual temos as seguintes funcionalidades:
 - Criar, editar e remover de produto
 - Buscar produtos por categoria
 - Checkout do pedido com retorno dos dados de acompanhamento e pagamento
-- Webhook para recebimento da confirmação do pagamento
-- Consultar situação do pagamento
 - Atualizar situação dos pedidos
 - Listar os pedidos ativos
 
