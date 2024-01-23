@@ -1,7 +1,6 @@
 ﻿using FastFoodFIAP.Domain.Models.PedidoAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Reflection.Emit;
 
 namespace FastFoodFIAP.Infra.Data.Mappings
 {
@@ -32,7 +31,6 @@ namespace FastFoodFIAP.Infra.Data.Mappings
             
             builder.Navigation(e => e.ClienteNavegation).AutoInclude();
             builder.Navigation(e => e.Combos).AutoInclude();
-            builder.Navigation(e => e.PagamentoNavegation).AutoInclude();
         }
     }
 }

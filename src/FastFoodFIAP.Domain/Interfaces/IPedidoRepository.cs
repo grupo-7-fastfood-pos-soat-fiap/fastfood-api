@@ -1,5 +1,4 @@
 using FastFoodFIAP.Domain.Models.PedidoAggregate;
-using FastFoodFIAP.Domain.Models.ProdutoAggregate;
 using GenericPack.Data;
 
 namespace FastFoodFIAP.Domain.Interfaces
@@ -13,6 +12,5 @@ namespace FastFoodFIAP.Domain.Interfaces
         void Add(Pedido pedido);
         void Update(Pedido pedido);
         void Remove(Pedido pedido);
-        bool PagamentoAprovado(Guid id);
     }
 }

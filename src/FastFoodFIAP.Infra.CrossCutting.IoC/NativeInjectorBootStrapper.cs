@@ -13,11 +13,7 @@ using FastFoodFIAP.Domain.Commands.CategoriaProdutoCommands;
 using FastFoodFIAP.Domain.Commands.ClienteCommands;
 using FastFoodFIAP.Infra.Data.Context;
 using FastFoodFIAP.Domain.Commands.PedidoCommands;
-using FastFoodFIAP.Domain.Commands.PagamentoCommands;
 using FastFoodFIAP.Domain.Events.AndamentoEvents;
-using FastFoodFIAP.Domain.Events.PagamentoEvents;
-using FastFoodFIAP.Domain.Interfaces.Services;
-using FastFoodFIAP.Infra.MercadoPago;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using GenericPack.Messaging;
@@ -49,20 +45,16 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
             services.AddScoped<IProdutoApp, ProdutoApp>();
             services.AddScoped<IClienteApp, ClienteApp>();
             services.AddScoped<IPedidoApp, PedidoApp>();
-            services.AddScoped<IPagamentoApp, PagamentoApp>();
             services.AddScoped<IFuncionarioApp, FuncionarioApp>();            
             services.AddScoped<IFuncionarioApp, FuncionarioApp>();
-            services.AddScoped<ISituacaoPagamentoApp, SituacaoPagamentoApp>();
 
             // Infra - Data           
             services.AddScoped<ICategoriaProdutoRepository, CategoriaProdutoRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IPedidoRepository, PedidoRepository>();
-            services.AddScoped<IPagamentoRepository, PagamentoRepository>();
             services.AddScoped<IOcupacaoRepository, OcupacaoRepository>();
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();            
-            services.AddScoped<ISituacaoPagamentoRepository, SituacaoPagamentoRepository>();
 
             // AutoMapper Settings
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(InputModelToDomainMappingProfile));
@@ -82,22 +74,9 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
             services.AddScoped<IRequestHandler<PedidoUpdateCommand, CommandResult>, PedidoCommandHandler>();
             services.AddScoped<IRequestHandler<PedidoDeleteCommand, CommandResult>, PedidoCommandHandler>();            
 
-            services.AddScoped<IRequestHandler<PagamentoUpdateCommand, CommandResult>, PagamentoCommandHandler>();
 
             // Domain - Events
             services.AddScoped<INotificationHandler<AndamentoCreateEvent>, AndamentoEventHandler>();
-            services.AddScoped<INotificationHandler<PagamentoCreateEvent>, PagamentoEventHandler>();
-
-            //Infra - Services
-            services.AddScoped<IGatewayPagamento, MercadoPagoService>();
-            
-            //Gateway de Pagamento
-            services.AddHttpClient<IGatewayPagamento, MercadoPagoService>(
-            client =>
-            {
-                // Set the base address of the named client.
-                client.BaseAddress = new Uri("https://api.mercadopago.com/");
-            });
         }
     }
 }

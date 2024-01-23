@@ -1,9 +1,6 @@
 ﻿using FastFoodFIAP.Domain.Events.AndamentoEvents;
-using FastFoodFIAP.Domain.Events.PagamentoEvents;
 using FastFoodFIAP.Domain.Interfaces;
-using FastFoodFIAP.Domain.Models;
 using FastFoodFIAP.Domain.Models.PedidoAggregate;
-using FluentValidation.Results;
 using GenericPack.Messaging;
 using MediatR;
 
@@ -32,8 +29,6 @@ namespace FastFoodFIAP.Domain.Commands.PedidoCommands
 
             pedido.AddDomainEvent(new AndamentoCreateEvent(pedido.Id, null, (int)Models.Enums.SituacaoPedido.Realizado, true));
                         
-            pedido.AddDomainEvent(new PagamentoCreateEvent(pedido));
-
             _repository.Add(pedido);            
 
             return await Commit(_repository.UnitOfWork, pedido.Id);

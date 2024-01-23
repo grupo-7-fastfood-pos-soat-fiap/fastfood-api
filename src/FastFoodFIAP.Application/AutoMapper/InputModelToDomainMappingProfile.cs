@@ -3,9 +3,6 @@ using FastFoodFIAP.Application.InputModels;
 using FastFoodFIAP.Domain.Commands.CategoriaProdutoCommands;
 using FastFoodFIAP.Domain.Commands.PedidoCommands;
 using FastFoodFIAP.Domain.Commands.ProdutoCommands;
-using FastFoodFIAP.Domain.Commands.PagamentoCommands;
-using FastFoodFIAP.Domain.Commands;
-using FastFoodFIAP.Domain.Models;
 using FastFoodFIAP.Domain.Commands.ClienteCommands;
 using FastFoodFIAP.Domain.Models.PedidoAggregate;
 
@@ -35,7 +32,6 @@ namespace FastFoodFIAP.Application.AutoMapper
             CreateMap<PedidoComboInputModel, PedidoCombo>();
             CreateMap<PedidoComboProdutoInputModel, PedidoComboProduto>();
 
-            CreateMap<PagamentoInputModel, PagamentoUpdateCommand>();
         }
     }
 }

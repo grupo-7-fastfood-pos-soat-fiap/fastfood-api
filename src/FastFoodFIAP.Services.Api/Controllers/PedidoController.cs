@@ -1,9 +1,6 @@
 ﻿using FastFoodFIAP.Application.InputModels;
 using FastFoodFIAP.Application.Interfaces;
-using FastFoodFIAP.Application.Services;
 using FastFoodFIAP.Application.ViewModels;
-using FastFoodFIAP.Domain.Models;
-using FastFoodFIAP.Domain.Models.PedidoAggregate;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -196,27 +193,6 @@ namespace FastFoodFIAP.Services.Api.Controllers
                 return Problem("Há um problema com a sua requisição - " + e.Message);
             }
             
-        }
-
-        [HttpGet("{id}/pagamento-aprovado")]
-        [SwaggerOperation(
-       Summary = "Pagamento do pedido aprovado.",
-       Description = "Verifica se o pagamento do pedido foi aprovado."
-       )]
-        [SwaggerResponse(200, "Success",typeof(bool))]
-        [SwaggerResponse(400, "Bad Request")]
-        [SwaggerResponse(404, "Not Found")]
-        [SwaggerResponse(500, "Unexpected error")]
-        public IActionResult PagamentoAprovado([FromRoute] Guid id)
-        {
-            try
-            {
-                return CustomResponse(_pedidoApp.PagamentoAprovado(id));
-            }
-            catch (Exception e)
-            {
-                return Problem("Há um problema com a sua requisição - " + e.Message);
-            }
         }
     }
 }
