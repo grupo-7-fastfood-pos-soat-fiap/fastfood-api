@@ -46,7 +46,7 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
             services.AddScoped<IClienteApp, ClienteApp>();
             services.AddScoped<IPedidoApp, PedidoApp>();
             services.AddScoped<IFuncionarioApp, FuncionarioApp>();            
-            services.AddScoped<IFuncionarioApp, FuncionarioApp>();
+            services.AddScoped<ISituacaoPedidoApp, SituacaoPedidoApp>();
 
             // Infra - Data           
             services.AddScoped<ICategoriaProdutoRepository, CategoriaProdutoRepository>();
@@ -54,7 +54,8 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IPedidoRepository, PedidoRepository>();
             services.AddScoped<IOcupacaoRepository, OcupacaoRepository>();
-            services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();            
+            services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+            services.AddScoped<ISituacaoPedidoRepository, SituacaoPedidoRepository>();
 
             // AutoMapper Settings
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(InputModelToDomainMappingProfile));
