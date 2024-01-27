@@ -36,7 +36,9 @@ namespace FastFoodFIAP.Application.AutoMapper
                 .ForMember( c => c.Ocupacao,
                     map => map.MapFrom(m => m.OcupacaoNavegation));
             
-            CreateMap<Ocupacao, OcupacaoViewModel>();            
+            CreateMap<Ocupacao, OcupacaoViewModel>();   
+
+             CreateMap<SituacaoPedido, SituacaoPedidoViewModel>();         
 
         }
     }
