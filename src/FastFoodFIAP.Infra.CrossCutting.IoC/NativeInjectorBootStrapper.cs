@@ -18,6 +18,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using GenericPack.Messaging;
 using System.Data;
+using FastFoodFIAP.Domain.Interfaces.Services;
+using FastFoodFIAP.Infra.Producao;
 
 namespace FastFoodFIAP.Infra.CrossCutting.IoC
 {
@@ -78,6 +80,19 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
 
             // Domain - Events
             services.AddScoped<INotificationHandler<AndamentoCreateEvent>, AndamentoEventHandler>();
+
+            //Infra - Services
+            services.AddScoped<IProxyProducao, ProducaoService>();
+
+            //Gateway de Pagamento
+            services.AddHttpClient<IProxyProducao, ProducaoService>(
+            client =>
+            {
+                // Set the base address of the named client.
+                //var host = configuration.GetSection("ProxyProducao").Value;
+
+                client.BaseAddress = new Uri("http://localhost:5017/");
+            });
         }
     }
 }

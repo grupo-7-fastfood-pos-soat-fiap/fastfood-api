@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using FastFoodFIAP.Domain.Interfaces;
+using FastFoodFIAP.Domain.Interfaces.Services;
 using FastFoodFIAP.Domain.Models;
 using GenericPack.Messaging;
 using MediatR;
@@ -11,10 +12,11 @@ namespace FastFoodFIAP.Domain.Events.AndamentoEvents
     public class AndamentoEventHandler :
         INotificationHandler<AndamentoCreateEvent>
     {
-
+        private readonly IProxyProducao _proxy;
         //private readonly IAndamentoRepository _repository;
-        public AndamentoEventHandler()//IAndamentoRepository repository)
+        public AndamentoEventHandler(IProxyProducao proxy)//IAndamentoRepository repository)
         {
+            _proxy = proxy;
             //_repository = repository;
         }
 
