@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericPack", "src\GenericP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodFIAP.Infra.CrossCutting.Bus", "src\FastFoodFIAP.Infra.CrossCutting.Bus\FastFoodFIAP.Infra.CrossCutting.Bus.csproj", "{B44100F9-660D-44A5-A17B-D9F0584F39F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodFIAP.Infra.Producao", "FastFoodFIAP.Infra.Producao\FastFoodFIAP.Infra.Producao.csproj", "{0A6683A0-7D39-4C93-9F30-1ED7F0ED7D6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{B44100F9-660D-44A5-A17B-D9F0584F39F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B44100F9-660D-44A5-A17B-D9F0584F39F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B44100F9-660D-44A5-A17B-D9F0584F39F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A6683A0-7D39-4C93-9F30-1ED7F0ED7D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A6683A0-7D39-4C93-9F30-1ED7F0ED7D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A6683A0-7D39-4C93-9F30-1ED7F0ED7D6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A6683A0-7D39-4C93-9F30-1ED7F0ED7D6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +78,7 @@ Global
 		{61B82270-6012-4E25-A461-192F11B74CA4} = {E6AA95AD-658B-454C-8253-B175F0E5B9D6}
 		{FD95EB19-6382-4E24-8966-916C6A653733} = {E6AA95AD-658B-454C-8253-B175F0E5B9D6}
 		{B44100F9-660D-44A5-A17B-D9F0584F39F2} = {E6AA95AD-658B-454C-8253-B175F0E5B9D6}
+		{0A6683A0-7D39-4C93-9F30-1ED7F0ED7D6D} = {E6AA95AD-658B-454C-8253-B175F0E5B9D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {256DCDFB-B34A-4523-BC60-254DE5183522}
