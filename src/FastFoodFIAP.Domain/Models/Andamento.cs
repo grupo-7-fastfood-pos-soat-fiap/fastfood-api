@@ -12,10 +12,6 @@ namespace FastFoodFIAP.Domain.Models
         public int SituacaoId { get; private set; }
         public bool Atual { get; set; }
 
-        public virtual Pedido? PedidoNavegation { get; private set; }
-        public virtual Funcionario? FuncionarioNavegation { get; private set; }
-        public virtual SituacaoPedido? SituacaoPedidoNavegation { get; private set; }
-
         private Andamento()
         {
 

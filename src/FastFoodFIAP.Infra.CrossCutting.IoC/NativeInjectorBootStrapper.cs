@@ -91,7 +91,7 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
                 // Set the base address of the named client.
                 //var host = configuration.GetSection("ProxyProducao").Value;
 
-                client.BaseAddress = new Uri("http://localhost:5017/");
+                client.BaseAddress = new Uri("https://localhost:7035/");
             });
         }
     }

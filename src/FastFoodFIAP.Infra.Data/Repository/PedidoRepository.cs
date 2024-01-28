@@ -40,29 +40,13 @@ namespace FastFoodFIAP.Infra.Data.Repository
             return await DbSet.AsNoTracking().ToListAsync();
         }
 
-        public async Task<IEnumerable<Pedido>> GetAllAtivos()
+        public async Task<IEnumerable<Pedido>> GetAllAtivos(List<Guid> lista)
         {
             try
             {
-
-                // var pedidos = await DbSet.AsNoTracking()                
-                // .Where(c => c.Andamentos!
-                // .Any(a => a.SituacaoId <= (int)Domain.Models.Enums.SituacaoPedido.Pronto && a.Atual))
-                // .ToListAsync();
-
-                // foreach (var pedido in pedidos)
-                //     foreach (var andamento in pedido.Andamentos!)
-                //         if (!andamento.Atual)
-                //             pedido.Andamentos.Remove(andamento);
-
-                // var ordem = pedidos.OrderBy(p => p.Andamentos!
-                // .OrderByDescending(c => c.SituacaoId).ThenBy(c => c.DataHoraInicio)
-                // .Select(c => c.SituacaoId).FirstOrDefault());
-
-                
-
-                //return ordem;
-                return new List<Pedido>();
+                return await DbSet.AsNoTracking()
+                .Where(c => lista.Any(id => c.Id == id))
+                .ToListAsync();                
 
             }
             catch (Exception ex)
@@ -71,13 +55,11 @@ namespace FastFoodFIAP.Infra.Data.Repository
             }
         }
 
-        public async Task<IEnumerable<Pedido>> GetAllBySituacao(int situacaoId)
-        {
-            // return await DbSet.AsNoTracking()
-            //     .Where(c => c.Andamentos!
-            //     .Any(a => a.SituacaoId == situacaoId && a.Atual))
-            //     .ToListAsync();  
-            return new List<Pedido>();        
+        public async Task<IEnumerable<Pedido>> GetAllBySituacao(List<Guid> lista)
+        {            
+            return await DbSet.AsNoTracking()
+                 .Where(c => lista.Any(id => c.Id == id))
+                 .ToListAsync();        
         }
 
         public async Task<Pedido?> GetById(Guid id)

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using FastFoodFIAP.Domain.Interfaces;
 using FastFoodFIAP.Domain.Interfaces.Services;
 using FastFoodFIAP.Domain.Models;
+using GenericPack.Data;
 using GenericPack.Messaging;
 using MediatR;
 
@@ -13,23 +14,18 @@ namespace FastFoodFIAP.Domain.Events.AndamentoEvents
         INotificationHandler<AndamentoCreateEvent>
     {
         private readonly IProxyProducao _proxy;
-        //private readonly IAndamentoRepository _repository;
-        public AndamentoEventHandler(IProxyProducao proxy)//IAndamentoRepository repository)
+
+        public AndamentoEventHandler(IProxyProducao proxy)
         {
             _proxy = proxy;
-            //_repository = repository;
         }
 
         public async Task Handle(AndamentoCreateEvent notification, CancellationToken cancellationToken)
         {
-            // //_repository.DesativaAndamentosAnteriosDoPedido(notification.PedidoId);
+            Andamento andamento = new Andamento(Guid.NewGuid(), notification.PedidoId, notification.FuncionarioId, notification.SituacaoId,notification.DataHoraInicio,notification.DataHoraFim,notification.Atual);
+            var result = await _proxy.Add(andamento);
 
-            // var andamento = new Andamento(Guid.NewGuid(), notification.PedidoId, notification.FuncionarioId, notification.SituacaoId, 
-            // notification.DataHoraInicio, notification.DataHoraFim, notification.Atual);
-           
-            // _repository.Add(andamento);
-
-            return;
+            return;            
         }       
     }
 }

@@ -4,8 +4,10 @@ using FastFoodFIAP.Application.Interfaces;
 using FastFoodFIAP.Application.ViewModels;
 using FastFoodFIAP.Domain.Commands.PedidoCommands;
 using FastFoodFIAP.Domain.Interfaces;
+using FastFoodFIAP.Domain.Interfaces.Services;
 using GenericPack.Mediator;
 using GenericPack.Messaging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace FastFoodFIAP.Application.Services
 {
@@ -14,13 +16,14 @@ namespace FastFoodFIAP.Application.Services
         private readonly IPedidoRepository _pedidoRepository;
         private readonly IMapper _mapper;
         private readonly IMediatorHandler _mediator;
+        private readonly IProxyProducao _proxy;        
 
-
-        public PedidoApp(IPedidoRepository pedidoRepository, IMediatorHandler mediator, IMapper mapper)
+        public PedidoApp(IPedidoRepository pedidoRepository, IMediatorHandler mediator, IMapper mapper, IProxyProducao proxy)
         {
             _pedidoRepository = pedidoRepository;
             _mediator = mediator;
             _mapper = mapper;
+            _proxy = proxy;
         }
 
         public async Task<CommandResult> Add(PedidoInputModel model)
@@ -49,12 +52,28 @@ namespace FastFoodFIAP.Application.Services
 
         public async Task<List<PedidoViewModel>> GetAllAtivos()
         {
-            return _mapper.Map<List<PedidoViewModel>>(await _pedidoRepository.GetAllAtivos());            
+            List<Guid> lista = new List<Guid>();
+
+            var response = await _proxy.AndamentosAtivos();
+
+            if (!response.IsNullOrEmpty())
+                foreach (var item in response)
+                    lista.Add(item.PedidoId);
+
+            return _mapper.Map<List<PedidoViewModel>>(await _pedidoRepository.GetAllAtivos(lista));            
         }
 
         public async Task<List<PedidoViewModel>> GetAllBySituacao(int situacaoId)
         {
-            return _mapper.Map<List<PedidoViewModel>>(await _pedidoRepository.GetAllBySituacao(situacaoId));
+            List<Guid> lista = new List<Guid>();
+            
+            var response = await _proxy.AndamentosPorSituacao(situacaoId);
+
+            if(!response.IsNullOrEmpty())
+                foreach (var item in response)
+                    lista.Add(item.PedidoId);
+
+            return _mapper.Map<List<PedidoViewModel>>(await _pedidoRepository.GetAllBySituacao(lista));
         }
 
         public async Task<PedidoViewModel> GetById(Guid id)
