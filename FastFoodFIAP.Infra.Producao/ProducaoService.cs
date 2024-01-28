@@ -10,6 +10,8 @@ using static System.Net.Mime.MediaTypeNames;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using System.Xml.Linq;
+using System.Text.Json.Serialization;
+using FastFoodFIAP.Domain.Models.PedidoAggregate;
 
 namespace FastFoodFIAP.Infra.Producao
 {
@@ -24,35 +26,101 @@ namespace FastFoodFIAP.Infra.Producao
         {
             _httpClient = httpClient;
         }
-        public async Task<Andamento> AndamentoAtual(Guid pedidoId)
+
+        public async Task<Andamento?> Add(Andamento andamento)
         {
-            //var requisicaoJson = new StringContent(
-            //   JsonSerializer.Serialize(requisicao),
-            //   Encoding.UTF8,
-            //   Application.Json);
+            
+            var requisicaoJson = new StringContent(
+               JsonSerializer.Serialize(andamento),
+               Encoding.UTF8,
+               Application.Json);
 
-            //_httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+            _httpClient.DefaultRequestHeaders.Accept
+                .Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            //using var httpResponseMessage =
-            //    await _httpClient.PostAsync($"instore/orders/qr/seller/collectors/{user_id}/pos/{external_pos_id}/qrs", requisicaoJson);
+            using var httpResponseMessage =
+                await _httpClient.PostAsync($"api/andamento", requisicaoJson);
 
-            //var resultString = await httpResponseMessage.Content.ReadAsStringAsync();
+            var resultString = await httpResponseMessage.Content.ReadAsStringAsync();
 
-            //return string.IsNullOrEmpty(resultString)
-            //? new QrData()
-            //: JsonSerializer.Deserialize<QrData>(resultString);
+            if (string.IsNullOrEmpty(resultString))
+                return null;
 
-            throw new NotImplementedException();
+            return JsonSerializer.Deserialize<Andamento>(resultString);
         }
 
-        public async Task<List<Andamento>> AndamentosAtivos()
-        {
-            throw new NotImplementedException();
+        public async Task<Andamento?> AndamentoAtualPedido(Guid pedidoId)
+        {   
+            _httpClient.DefaultRequestHeaders.Accept
+                .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            using var httpResponseMessage =
+                await _httpClient.GetAsync($"api/andamento/{pedidoId}");
+
+            var resultString = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrEmpty(resultString))
+                return null;
+
+            return JsonSerializer.Deserialize<Andamento>(resultString);
         }
 
-        public async Task<List<Andamento>> AndamentosPorSituacao(int situacaoPedido)
+        public async Task<List<Andamento>?> AndamentosAtivos()
         {
-            throw new NotImplementedException();
+            _httpClient.DefaultRequestHeaders.Accept
+                .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            using var httpResponseMessage =
+                await _httpClient.GetAsync($"api/andamento/ativos");
+
+            var resultString = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrEmpty(resultString))
+                return null;
+
+            return JsonSerializer.Deserialize<List<Andamento>>(resultString);
+        }
+
+        public async Task<List<Andamento>?> AndamentosPorSituacao(int situacaoPedido)
+        {
+            try
+            {
+
+            
+                _httpClient.DefaultRequestHeaders.Accept
+                    .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                using var httpResponseMessage =
+                    await _httpClient.GetAsync($"api/andamento/situacao/{situacaoPedido}");
+
+                var resultString = await httpResponseMessage.Content.ReadAsStringAsync();
+
+                if (string.IsNullOrEmpty(resultString))
+                    return null;
+
+                return JsonSerializer.Deserialize<List<Andamento>>(resultString);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task<List<Andamento>?> Andamentos()
+        {
+            _httpClient.DefaultRequestHeaders.Accept
+                .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            using var httpResponseMessage =
+                await _httpClient.GetAsync($"api/andamento");
+
+            var resultString = await httpResponseMessage.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrEmpty(resultString))
+                return null;
+
+            return JsonSerializer.Deserialize<List<Andamento>>(resultString);
         }
 
         public void Dispose() => _httpClient?.Dispose();
