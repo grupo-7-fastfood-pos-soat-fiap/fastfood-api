@@ -5,6 +5,7 @@ using FastFoodFIAP.Application.ViewModels;
 using FastFoodFIAP.Domain.Commands.PedidoCommands;
 using FastFoodFIAP.Domain.Interfaces;
 using FastFoodFIAP.Domain.Interfaces.Services;
+using FastFoodFIAP.Infra.Data.Mensageria;
 using GenericPack.Mediator;
 using GenericPack.Messaging;
 using Microsoft.IdentityModel.Tokens;
@@ -29,6 +30,7 @@ namespace FastFoodFIAP.Application.Services
         public async Task<CommandResult> Add(PedidoInputModel model)
         {
             var command = _mapper.Map<PedidoCreateCommand>(model);
+            await PedidoMensageria.SendMessage("https://sqs.us-east-1.amazonaws.com/381491906285/pedido-producao-recebido", command.ToString();
             return await _mediator.SendCommand(command);
         }
 
