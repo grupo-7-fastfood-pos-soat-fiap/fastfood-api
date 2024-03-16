@@ -61,6 +61,12 @@ A imagem a seguir documenta o sistema utilizando a linguagem ubíqua, dos seguin
 
    http://localhost:8000/swagger/index.html
 
+## Como rodar a aplicação na nuvem
+
+1. Consulte o repositório Terraform-Infra:
+
+   https://github.com/grupo-7-fastfood-pos-soat-fiap/terraform-infra
+
 ## Tecnologias
 
 - Runtime do .NET 7.0.5
