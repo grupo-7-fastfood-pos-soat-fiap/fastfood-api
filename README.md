@@ -26,7 +26,7 @@ No projeto atual temos as seguintes funcionalidades:
 - Checkout do pedido com retorno dos dados de acompanhamento e pagamento
 - Atualizar situação dos pedidos
 - Listar os pedidos ativos
-- Exclusão lógica dos dados pessoais do cliente (LGPD)
+- Solicitação de exclusão dos dados pessoais do cliente (LGPD)
 
 ## Documentações
 
