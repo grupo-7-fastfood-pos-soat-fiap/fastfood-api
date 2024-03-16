@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\FastFoodFIAP.Domain\FastFoodFIAP.Domain.csproj" />
+    <ProjectReference Include="..\FastFoodFIAP.Domain\FastFoodFIAP.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericPack", "src\GenericP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFoodFIAP.Infra.CrossCutting.Bus", "src\FastFoodFIAP.Infra.CrossCutting.Bus\FastFoodFIAP.Infra.CrossCutting.Bus.csproj", "{B44100F9-660D-44A5-A17B-D9F0584F39F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodFIAP.Infra.Producao", "FastFoodFIAP.Infra.Producao\FastFoodFIAP.Infra.Producao.csproj", "{0A6683A0-7D39-4C93-9F30-1ED7F0ED7D6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastFoodFIAP.Infra.Producao", "src\FastFoodFIAP.Infra.Producao\FastFoodFIAP.Infra.Producao.csproj", "{0A6683A0-7D39-4C93-9F30-1ED7F0ED7D6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
