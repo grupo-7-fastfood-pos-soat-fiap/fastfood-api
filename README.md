@@ -39,9 +39,9 @@ A imagem a seguir documenta o sistema utilizando a linguagem ubíqua, dos seguin
 
 - Miro do DDD: https://miro.com/app/board/uXjVMI-wOLc=/?share_link_id=8789531868
 
-- Diagrama de Classes (necessita ser aberto no [Draw.io](https://www.drawio.com/)): https://github.com/belloniz/group-7/blob/main/docs/ProjetoGrupo7_v2.drawio
+- Diagrama de Classes (necessita ser aberto no [Draw.io](https://www.drawio.com/)): [https://github.com/belloniz/group-7/blob/main/docs/ProjetoGrupo7_v2.drawio](https://github.com/grupo-7-fastfood-pos-soat-fiap/fastfood-api/blob/main/docs/ProjetoGrupo7_v2.drawio)
 
-- Relatório RIPD do sistema: https://github.com/belloniz/group-7/blob/main/docs/RIPD-FastFoodFIAP.pdf
+- Relatório RIPD do sistema: [https://github.com/belloniz/group-7/blob/main/docs/RIPD-FastFoodFIAP.pdf](https://github.com/grupo-7-fastfood-pos-soat-fiap/fastfood-api/blob/main/docs/RIPD-FastFoodFIAP.pdf)
 
 ## Pré-requisitos
 
