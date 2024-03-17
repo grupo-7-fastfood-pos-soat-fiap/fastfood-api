@@ -9,7 +9,7 @@ SOAP2 - Grupo 7
    * [Documentações](#documentações)
    * [Pré-requisitos](#pré-requisitos)
    * [Como rodar a aplicação <g-emoji class="g-emoji" alias="arrow_forward" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/25b6.png">▶️</g-emoji>](#como-rodar-a-aplicação-️)
-   * [Como rodar a aplicação na nuvem <g-emoji class="g-emoji" alias="arrow_forward" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/25b6.png">▶️</g-emoji>](#Como-rodar-a-aplicação-na-nuvem)
+   * [Como rodar a aplicação na nuvem <g-emoji class="g-emoji" alias="arrow_forward" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/25b6.png">▶️</g-emoji>](#como-rodar-a-aplicação-localmente-%EF%B8%8F)
    * [Tecnologias](#tecnologias)
    * [Arquitetura e Padrões](#arquitetura-e-padrões)
    * [Justificativa para adoção do padrão Saga coreografado](#justificativa-para-adoção-do-padrão-saga-coreografado)
