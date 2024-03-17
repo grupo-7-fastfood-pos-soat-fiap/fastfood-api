@@ -9,8 +9,10 @@ SOAP2 - Grupo 7
    * [Documentações](#documentações)
    * [Pré-requisitos](#pré-requisitos)
    * [Como rodar a aplicação <g-emoji class="g-emoji" alias="arrow_forward" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/25b6.png">▶️</g-emoji>](#como-rodar-a-aplicação-️)
+   * [Como rodar a aplicação na nuvem <g-emoji class="g-emoji" alias="arrow_forward" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/25b6.png">▶️</g-emoji>](#Como-rodar-a-aplicação-na-nuvem)
    * [Tecnologias](#tecnologias)
    * [Arquitetura e Padrões](#arquitetura-e-padrões)
+   * [Justificativa para adoção do padrão Saga coreografado](#justificativa-para-adoção-do-padrão-saga-coreografado)
    * [Estrutura da solução](#estrutura-da-solução)
    * [Desenvolvedores <img class="emoji" title=":octocat:" alt=":octocat:" src="https://github.githubassets.com/images/icons/emoji/octocat.png" height="20" width="20" align="absmiddle">](#desenvolvedores-octocat)
 
@@ -61,7 +63,7 @@ A imagem a seguir documenta o sistema utilizando a linguagem ubíqua, dos seguin
 
    http://localhost:8000/swagger/index.html
 
-## Como rodar a aplicação na nuvem
+## Como rodar a aplicação na nuvem ▶️
 
 1. Consulte o repositório Terraform-Infra:
 
