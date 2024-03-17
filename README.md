@@ -91,6 +91,15 @@ A imagem a seguir documenta o sistema utilizando a linguagem ubíqua, dos seguin
 - CQRS
 - Unit of Work
 - Repository
+- Saga Pattern
+
+## Justificativa para adoção do padrão Saga coreografado
+
+Como sistema adotou inicialmente o padrão CQRS com fornecimento de eventos e, sabendo que, no padrão Saga Coreografado, cada microsserviço é responsável por gerar as ações subsequentes necessárias, o padrão Saga coreografado foi o escolhido, pois atende perfeitamente, em virtude da baixa complexidade e da pouco quantidade de etapas necessárias para manutenção da consistência entre os microsserviços.  No sistema da lanchonete, o microsserviço de produção que controla o andamento dos pedidos, será o responsável por receber as mensagens da fila, provenientes dos eventos dos demais serviços. Como um evento só é disparado após a garantia de registro do comando que o gerou, a orquestração traria uma complexidade desnecessária para a aplicação, uma vez que, quase todos os andamentos dos pedidos são realizados por interação dos usuários, não havendo a necessidade de uma orquestração centralizada com visão global do fluxo de trabalho. Sendo assim, consideramos as seguintes características do padrão Saga coreografado para adota-lo:
+
+- O fluxo de trabalho distribuído e descentralizado, sem um ponto central de controle.
+- Cada serviço sabe como reagir a eventos específicos e como iniciar ações subsequentes.
+
 
 ## Estrutura da solução
 
