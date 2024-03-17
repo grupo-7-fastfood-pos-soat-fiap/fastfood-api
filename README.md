@@ -102,6 +102,9 @@ Como sistema adotou inicialmente o padrão CQRS com fornecimento de eventos e, s
 - O fluxo de trabalho distribuído e descentralizado, sem um ponto central de controle.
 - Cada serviço sabe como reagir a eventos específicos e como iniciar ações subsequentes.
 
+### Arquitetura Padrão Saga Coreografado
+
+![Saga Pattern](./docs/SagaCoreografado.png)
 
 ## Estrutura da solução
 
