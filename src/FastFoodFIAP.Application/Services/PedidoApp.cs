@@ -30,7 +30,6 @@ namespace FastFoodFIAP.Application.Services
         public async Task<CommandResult> Add(PedidoInputModel model)
         {
             var command = _mapper.Map<PedidoCreateCommand>(model);
-            await PedidoMensageria.SendMessage("https://sqs.us-east-1.amazonaws.com/381491906285/pedido-producao-recebido", command.ToString();
             return await _mediator.SendCommand(command);
         }
 

@@ -20,6 +20,7 @@ using GenericPack.Messaging;
 using System.Data;
 using FastFoodFIAP.Domain.Interfaces.Services;
 using FastFoodFIAP.Infra.Producao;
+using FastFoodFIAP.Domain.Events.PedidoEvents;
 
 namespace FastFoodFIAP.Infra.CrossCutting.IoC
 {
@@ -79,7 +80,7 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
 
 
             // Domain - Events
-            services.AddScoped<INotificationHandler<AndamentoCreateEvent>, AndamentoEventHandler>();
+            services.AddScoped<INotificationHandler<PedidoCreateEvent>, PedidoEventHandler>();
 
             //Infra - Services
             services.AddScoped<IProxyProducao, ProducaoService>();
