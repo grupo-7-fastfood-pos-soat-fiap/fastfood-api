@@ -1,4 +1,5 @@
 ﻿using FastFoodFIAP.Domain.Events.AndamentoEvents;
+using FastFoodFIAP.Domain.Events.PedidoEvents;
 using FastFoodFIAP.Domain.Interfaces;
 using FastFoodFIAP.Domain.Models.PedidoAggregate;
 using GenericPack.Messaging;
@@ -23,11 +24,11 @@ namespace FastFoodFIAP.Domain.Commands.PedidoCommands
             if (!request.IsValid()) return request.CommandResult;            
 
             var pedido = new Pedido(Guid.NewGuid(),request.ClienteId);                            
-            
+             
             foreach (var item in request.Combos)
                 pedido.AddCombo(item.Quantidade, item.Produtos);
 
-            pedido.AddDomainEvent(new AndamentoCreateEvent(pedido.Id, null, (int)Models.Enums.SituacaoPedido.Realizado, true));
+            pedido.AddDomainEvent(new PedidoCreateEvent(pedido.Id, pedido.ClienteId, null, (int)Models.Enums.SituacaoPedido.Realizado));
                         
             _repository.Add(pedido);            
 

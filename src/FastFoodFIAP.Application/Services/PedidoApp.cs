@@ -5,6 +5,7 @@ using FastFoodFIAP.Application.ViewModels;
 using FastFoodFIAP.Domain.Commands.PedidoCommands;
 using FastFoodFIAP.Domain.Interfaces;
 using FastFoodFIAP.Domain.Interfaces.Services;
+using FastFoodFIAP.Infra.Data.Mensageria;
 using GenericPack.Mediator;
 using GenericPack.Messaging;
 using Microsoft.IdentityModel.Tokens;
