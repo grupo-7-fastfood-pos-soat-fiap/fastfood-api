@@ -16,6 +16,8 @@ namespace FastFoodFIAP.Application.AutoMapper
 
             CreateMap<Cliente, ClienteViewModel>();
 
+            CreateMap<LgpdCliente, LgpdClienteViewModel>();
+
             CreateMap<Imagem, ImagemViewModel>();
 
             CreateMap<Produto, ProdutoViewModel>()
