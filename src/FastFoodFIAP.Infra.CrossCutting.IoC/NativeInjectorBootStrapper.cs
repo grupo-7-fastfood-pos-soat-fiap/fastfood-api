@@ -81,6 +81,7 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
 
             // Domain - Events
             services.AddScoped<INotificationHandler<PedidoCreateEvent>, PedidoEventHandler>();
+            ///services.AddScoped<INotificationHandler<AndamentoCreateEvent>, AndamentoEventHandler>();
 
             //Infra - Services
             services.AddScoped<IProxyProducao, ProducaoService>();

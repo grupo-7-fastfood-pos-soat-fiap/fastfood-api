@@ -1,18 +1,15 @@
 ﻿using Amazon.SQS;
 using Amazon.SQS.Model;
-using FastFoodFIAP.Domain.Models;
 using FastFoodFIAP.Domain.Models.PedidoAggregate;
+using MediatR;
 
 namespace FastFoodFIAP.Domain.Events.PedidoEvents
 {
-    public class PedidoEventHandler {
+    public class PedidoEventHandler: INotificationHandler<PedidoCreateEvent>
+    {
         AmazonSQSClient amazonSQSClient = new AmazonSQSClient();
 
-        public PedidoEventHandler()
-        {
-        }
-
-        public async Task Handle(PedidoCreateEvent notification)
+        public async Task Handle(PedidoCreateEvent notification, CancellationToken cancellationToken)
         {
             Pedido pedido = new Pedido(notification.PedidoId, notification.ClientId);
             var requestQueuePedidoRealizado = new SendMessageRequest();

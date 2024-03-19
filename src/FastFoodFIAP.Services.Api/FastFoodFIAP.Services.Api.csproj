@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FastFoodFIAP.Domain\FastFoodFIAP.Domain.csproj" />
     <ProjectReference Include="..\GenericPack\GenericPack.csproj" />
     <ProjectReference Include="..\FastFoodFIAP.Application\FastFoodFIAP.Application.csproj" />
     <ProjectReference Include="..\FastFoodFIAP.Infra.CrossCutting.IoC\FastFoodFIAP.Infra.CrossCutting.IoC.csproj" />

@@ -24,7 +24,7 @@ namespace FastFoodFIAP.Domain.Commands.PedidoCommands
             if (!request.IsValid()) return request.CommandResult;            
 
             var pedido = new Pedido(Guid.NewGuid(),request.ClienteId);                            
-            
+             
             foreach (var item in request.Combos)
                 pedido.AddCombo(item.Quantidade, item.Produtos);
 

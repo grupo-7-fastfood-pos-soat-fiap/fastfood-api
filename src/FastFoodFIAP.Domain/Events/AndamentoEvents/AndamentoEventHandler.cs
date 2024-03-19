@@ -4,12 +4,10 @@ using FastFoodFIAP.Domain.Models;
 
 namespace FastFoodFIAP.Domain.Events.AndamentoEvents
 {
-    public class AndamentoEventHandler {
+    public class AndamentoEventHandler
+    {
         AmazonSQSClient amazonSQSClient = new AmazonSQSClient();
 
-        public AndamentoEventHandler()
-        {
-        }
 
         public async Task Handle(AndamentoCreateEvent notification)
         {
