@@ -5,6 +5,7 @@ using FastFoodFIAP.Domain.Commands.PedidoCommands;
 using FastFoodFIAP.Domain.Commands.ProdutoCommands;
 using FastFoodFIAP.Domain.Commands.ClienteCommands;
 using FastFoodFIAP.Domain.Models.PedidoAggregate;
+using FastFoodFIAP.Domain.Commands.LgpdCommands;
 
 namespace FastFoodFIAP.Application.AutoMapper
 {
@@ -16,7 +17,8 @@ namespace FastFoodFIAP.Application.AutoMapper
 
             //Cliente
             CreateMap<ClienteInputModel, ClienteCreateCommand>();
-            
+            CreateMap<LgpdClienteInputModel, LgpdClienteCreateCommand>();
+
             //CategoriaProduto
             CreateMap<CategoriaProdutoInputModel, CategoriaProdutoCreateCommand>();
             CreateMap<CategoriaProdutoInputModel, CategoriaProdutoUpdateCommand>();

@@ -21,6 +21,8 @@ using System.Data;
 using FastFoodFIAP.Domain.Interfaces.Services;
 using FastFoodFIAP.Infra.Producao;
 using FastFoodFIAP.Domain.Events.PedidoEvents;
+using FastFoodFIAP.Domain.Commands.LgpdCommands;
+
 
 namespace FastFoodFIAP.Infra.CrossCutting.IoC
 {
@@ -50,6 +52,7 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
             services.AddScoped<IPedidoApp, PedidoApp>();
             services.AddScoped<IFuncionarioApp, FuncionarioApp>();            
             services.AddScoped<ISituacaoPedidoApp, SituacaoPedidoApp>();
+            services.AddScoped<ILgpdApp, LgpdApp>();
 
             // Infra - Data           
             services.AddScoped<ICategoriaProdutoRepository, CategoriaProdutoRepository>();
@@ -59,6 +62,7 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
             services.AddScoped<IOcupacaoRepository, OcupacaoRepository>();
             services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
             services.AddScoped<ISituacaoPedidoRepository, SituacaoPedidoRepository>();
+            services.AddScoped<ILgpdRepository, LgpdRepository>();
 
             // AutoMapper Settings
             services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(InputModelToDomainMappingProfile));
@@ -73,6 +77,8 @@ namespace FastFoodFIAP.Infra.CrossCutting.IoC
             services.AddScoped<IRequestHandler<ProdutoDeleteCommand, CommandResult>, ProdutoCommandHandler>();
 
             services.AddScoped<IRequestHandler<ClienteCreateCommand, CommandResult>, ClienteCommandHandler>();
+
+            services.AddScoped<IRequestHandler<LgpdClienteCreateCommand, CommandResult>, LgpdClienteCommandHandler>();
 
             services.AddScoped<IRequestHandler<PedidoCreateCommand, CommandResult>, PedidoCommandHandler>();
             services.AddScoped<IRequestHandler<PedidoUpdateCommand, CommandResult>, PedidoCommandHandler>();

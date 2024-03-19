@@ -9,8 +9,10 @@ SOAP2 - Grupo 7
    * [Documentações](#documentações)
    * [Pré-requisitos](#pré-requisitos)
    * [Como rodar a aplicação <g-emoji class="g-emoji" alias="arrow_forward" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/25b6.png">▶️</g-emoji>](#como-rodar-a-aplicação-️)
+   * [Como rodar a aplicação na nuvem <g-emoji class="g-emoji" alias="arrow_forward" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/25b6.png">▶️</g-emoji>](#como-rodar-a-aplicação-localmente-%EF%B8%8F)
    * [Tecnologias](#tecnologias)
    * [Arquitetura e Padrões](#arquitetura-e-padrões)
+   * [Justificativa para adoção do padrão Saga coreografado](#justificativa-para-adoção-do-padrão-saga-coreografado)
    * [Estrutura da solução](#estrutura-da-solução)
    * [Desenvolvedores <img class="emoji" title=":octocat:" alt=":octocat:" src="https://github.githubassets.com/images/icons/emoji/octocat.png" height="20" width="20" align="absmiddle">](#desenvolvedores-octocat)
 
@@ -26,6 +28,7 @@ No projeto atual temos as seguintes funcionalidades:
 - Checkout do pedido com retorno dos dados de acompanhamento e pagamento
 - Atualizar situação dos pedidos
 - Listar os pedidos ativos
+- Solicitação de exclusão dos dados pessoais do cliente (LGPD)
 
 ## Documentações
 
@@ -37,7 +40,10 @@ A imagem a seguir documenta o sistema utilizando a linguagem ubíqua, dos seguin
 
 
 - Miro do DDD: https://miro.com/app/board/uXjVMI-wOLc=/?share_link_id=8789531868
-- Diagrama de Classes (necessita ser aberto no [Draw.io](https://www.drawio.com/)): https://github.com/belloniz/group-7/blob/main/docs/ProjetoGrupo7_v2.drawio
+
+- Diagrama de Classes (necessita ser aberto no [Draw.io](https://www.drawio.com/)): (https://github.com/grupo-7-fastfood-pos-soat-fiap/fastfood-api/blob/main/docs/ProjetoGrupo7_v2.drawio)
+
+- Relatório RIPD do sistema: (https://github.com/grupo-7-fastfood-pos-soat-fiap/fastfood-api/blob/main/docs/RIPD-FastFoodFIAP.pdf)
 
 ## Pré-requisitos
 
@@ -56,6 +62,12 @@ A imagem a seguir documenta o sistema utilizando a linguagem ubíqua, dos seguin
 2. Teste o sistema através do swagger:
 
    http://localhost:8000/swagger/index.html
+
+## Como rodar a aplicação na nuvem ▶️
+
+1. Consulte o repositório Terraform-Infra:
+
+   https://github.com/grupo-7-fastfood-pos-soat-fiap/terraform-infra
 
 ## Tecnologias
 
@@ -81,6 +93,18 @@ A imagem a seguir documenta o sistema utilizando a linguagem ubíqua, dos seguin
 - CQRS
 - Unit of Work
 - Repository
+- Saga Pattern
+
+## Justificativa para adoção do padrão Saga coreografado
+
+Como sistema adotou inicialmente o padrão CQRS com fornecimento de eventos e, sabendo que, no padrão Saga Coreografado, cada microsserviço é responsável por gerar as ações subsequentes necessárias, o padrão Saga coreografado foi o escolhido, pois atende perfeitamente, em virtude da baixa complexidade e da pouco quantidade de etapas necessárias para manutenção da consistência entre os microsserviços.  No sistema da lanchonete, o microsserviço de produção que controla o andamento dos pedidos, será o responsável por receber as mensagens da fila, provenientes dos eventos dos demais serviços. Como um evento só é disparado após a garantia de registro do comando que o gerou, a orquestração traria uma complexidade desnecessária para a aplicação, uma vez que, quase todos os andamentos dos pedidos são realizados por interação dos usuários, não havendo a necessidade de uma orquestração centralizada com visão global do fluxo de trabalho. Sendo assim, consideramos as seguintes características do padrão Saga coreografado para adota-lo:
+
+- O fluxo de trabalho distribuído e descentralizado, sem um ponto central de controle.
+- Cada serviço sabe como reagir a eventos específicos e como iniciar ações subsequentes.
+
+### Arquitetura Padrão Saga Coreografado
+
+![Saga Pattern](./docs/SagaCoreografado.png)
 
 ## Estrutura da solução
 

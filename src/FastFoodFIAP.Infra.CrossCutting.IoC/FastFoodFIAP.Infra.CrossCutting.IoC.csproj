@@ -7,7 +7,7 @@
   </PropertyGroup>
 
 <ItemGroup>
-    <ProjectReference Include="..\..\FastFoodFIAP.Infra.Producao\FastFoodFIAP.Infra.Producao.csproj" />
+    <ProjectReference Include="..\FastFoodFIAP.Infra.Producao\FastFoodFIAP.Infra.Producao.csproj" />
     <ProjectReference Include="..\FastFoodFIAP.Application\FastFoodFIAP.Application.csproj" />
     <ProjectReference Include="..\FastFoodFIAP.Domain\FastFoodFIAP.Domain.csproj" />
     <ProjectReference Include="..\FastFoodFIAP.Infra.Data\FastFoodFIAP.Infra.Data.csproj" />
