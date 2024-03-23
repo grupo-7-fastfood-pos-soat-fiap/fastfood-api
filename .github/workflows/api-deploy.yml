@@ -1,4 +1,4 @@
-name: Deploy API image to Amazon ECR
+name: Deploy API Image to Amazon ECR
 
 on:
   push:
